@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addReminder } from './../../actions';
+import { addReminder, delReminder } from './../../actions';
 
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { List, ListItem } from 'material-ui/List';
-import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
+import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
@@ -21,10 +21,15 @@ class App extends Component {
     }
   }
 
-  
+
   addReminder() {
     this.props.addReminder(this.state.text);
   }
+
+  delReminder(id) {
+    this.props.delReminder(id);
+  }
+
   renderReminders() {
     const { reminders } = this.props;
     const iconButtonElement = (
@@ -36,13 +41,7 @@ class App extends Component {
         <MoreVertIcon color={grey400} />
       </IconButton>
     );
-    const rightIconMenu = (
-      <IconMenu iconButtonElement={iconButtonElement}>
-        <MenuItem>Reply</MenuItem>
-        <MenuItem>Forward</MenuItem>
-        <MenuItem>Delete</MenuItem>
-      </IconMenu>
-    );
+
     return (
       <List>
         {
@@ -50,7 +49,11 @@ class App extends Component {
             return (
               <ListItem
                 key={reminder.id}
-                rightIconButton={rightIconMenu}
+                rightIconButton={
+                  <IconMenu iconButtonElement={iconButtonElement}>
+                    <MenuItem onClick={() => this.delReminder(reminder.id)}>Delete</MenuItem>
+                  </IconMenu>
+                }
                 primaryText={reminder.text}
               />
             )
@@ -66,7 +69,8 @@ class App extends Component {
         margin: 12,
       },
       App: {
-        maxWidth: 300
+        maxWidth: 376,
+        margin: '0 auto'
       }
     };
     return (
@@ -99,4 +103,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { addReminder })(App);
+export default connect(mapStateToProps, { addReminder, delReminder })(App);
