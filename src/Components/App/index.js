@@ -12,18 +12,22 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
+import Divider from 'material-ui/Divider';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      remDate: ''
     }
   }
 
 
   addReminder() {
-    this.props.addReminder(this.state.text);
+    console.log(this.state);
+    this.props.addReminder(this.state.text, this.state.remDate);
   }
 
   delReminder(id) {
@@ -69,7 +73,7 @@ class App extends Component {
         margin: 12,
       },
       App: {
-        maxWidth: 376,
+        maxWidth: 257,
         margin: '0 auto'
       }
     };
@@ -84,12 +88,17 @@ class App extends Component {
             floatingLabelText="Floating Label Text"
             onChange={event => this.setState({ text: event.target.value })}
           />
+          <DatePicker
+            hintText="Portrait Dialog"
+            onChange={( event, date) => this.setState({ remDate: date })}
+          />
           <RaisedButton
             label="Primary"
             primary={true}
             style={style.button}
             onClick={() => this.addReminder()}
           />
+          <Divider />
           {this.renderReminders()}
         </div>
       </div>

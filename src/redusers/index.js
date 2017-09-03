@@ -1,9 +1,11 @@
 import { ADD_REMINDER, DEL_REMINDER } from './../constant/constant.js';
 
 const reminder = (action) => {
+  let { text, remDate } = action;
   return {
-    text: action.text,
-    id: Math.random()
+    id: Math.random(),
+    text,
+    remDate
   }
 }
 
