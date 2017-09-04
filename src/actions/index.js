@@ -1,6 +1,7 @@
-import { ADD_REMINDER, DEL_REMINDER } from './../constant/constant.js';
+import { ADD_REMINDER, DEL_REMINDER, CLEAR_REMINDER } from './../constant/constant.js';
 
 export const addReminder = (text, remDate) => {
+  remDate = `${remDate.getFullYear()}-${remDate.getDate()}-${remDate.getMonth()+1}`
   const action = {
     type: ADD_REMINDER,
     text,
@@ -15,4 +16,10 @@ export const delReminder = (id) => {
     id
   }
   return action;
+}
+
+export const clearReminders = () => {
+  return {
+    type: CLEAR_REMINDER
+  }
 }

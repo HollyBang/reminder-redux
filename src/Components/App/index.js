@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addReminder, delReminder } from './../../actions';
+
+import { addReminder, delReminder, clearReminders } from './../../actions';
 
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { List, ListItem } from 'material-ui/List';
-import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors';
+import { lightBlue500, darkBlack, lightBlack } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
@@ -42,7 +43,7 @@ class App extends Component {
         tooltip="more"
         tooltipPosition="bottom-left"
       >
-        <MoreVertIcon color={grey400} />
+        <MoreVertIcon color={lightBlue500} />
       </IconButton>
     );
 
@@ -59,6 +60,7 @@ class App extends Component {
                   </IconMenu>
                 }
                 primaryText={reminder.text}
+                secondaryText={reminder.remDate}
               />
             )
           })
@@ -100,6 +102,13 @@ class App extends Component {
           />
           <Divider />
           {this.renderReminders()}
+          <Divider />
+          <RaisedButton 
+            label="Secondary"
+            secondary={true}
+            style={style.button} 
+            onClick={() => this.props.clearReminders()} 
+          />
         </div>
       </div>
     );
@@ -112,4 +121,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { addReminder, delReminder })(App);
+export default connect(mapStateToProps, { addReminder, delReminder, clearReminders })(App);
