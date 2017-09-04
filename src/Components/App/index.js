@@ -8,7 +8,7 @@ import { addReminder, delReminder, clearReminders } from './../../actions';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { List, ListItem } from 'material-ui/List';
-import { lightBlue500, darkBlack, lightBlack } from 'material-ui/styles/colors';
+import { lightBlue500 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
