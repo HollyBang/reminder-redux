@@ -28,6 +28,9 @@ class App extends Component {
 
   addReminder() {
     this.props.addReminder(this.state.text, this.state.remDate);
+    this.setState({
+      text: ''
+    });
   }
 
   delReminder(id) {
@@ -85,6 +88,7 @@ class App extends Component {
         </div>
         <div className="form">
           <TextField
+            value = {this.state.text}
             hintText="mb, will u gonna to the store?"
             floatingLabelText="Write reminder here!"
             onChange={event => this.setState({ text: event.target.value })}
