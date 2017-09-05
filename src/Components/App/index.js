@@ -29,7 +29,8 @@ class App extends Component {
   addReminder() {
     this.props.addReminder(this.state.text, this.state.remDate);
     this.setState({
-      text: ''
+      text: '',
+      remDate: ''
     });
   }
 
@@ -94,6 +95,7 @@ class App extends Component {
             onChange={event => this.setState({ text: event.target.value })}
           />
           <DatePicker
+            value = {this.state.remDate}
             hintText="Date picker"
             onChange={( event, date) => this.setState({ remDate: date })}
           />
