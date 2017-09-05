@@ -1,8 +1,13 @@
 import { ADD_REMINDER, DEL_REMINDER, CLEAR_REMINDER } from './../constant/constant.js';
 
 export const addReminder = (text, remDate) => {
-  remDate = `${remDate.getFullYear()}-${remDate.getDate()}-${remDate.getMonth()+1}`
-  const action = {
+  remDate = !remDate
+    ? 'forgot date?'
+    : `${remDate.getFullYear()}-${remDate.getDate()}-${remDate.getMonth() + 1}`;
+  
+    text = !text ? 'forgot the reminder?' : text;
+  
+    const action = {
     type: ADD_REMINDER,
     text,
     remDate
