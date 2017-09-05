@@ -27,7 +27,6 @@ class App extends Component {
 
 
   addReminder() {
-    console.log(this.state);
     this.props.addReminder(this.state.text, this.state.remDate);
   }
 
@@ -41,7 +40,7 @@ class App extends Component {
       <IconButton
         touch={true}
         tooltip="more"
-        tooltipPosition="bottom-left"
+        tooltipPosition="top-left"
       >
         <MoreVertIcon color={lightBlue500} />
       </IconButton>
@@ -56,7 +55,7 @@ class App extends Component {
                 key={reminder.id}
                 rightIconButton={
                   <IconMenu iconButtonElement={iconButtonElement}>
-                    <MenuItem onClick={() => this.delReminder(reminder.id)}>Delete</MenuItem>
+                    <MenuItem onClick={() => this.delReminder(reminder.id)}>Delete Reminder</MenuItem>
                   </IconMenu>
                 }
                 primaryText={reminder.text}
@@ -82,20 +81,20 @@ class App extends Component {
     return (
       <div className="App" style={style.App}>
         <div className="title">
-          Title
+          Reminders
         </div>
         <div className="form">
           <TextField
-            hintText="Hint Text"
-            floatingLabelText="Floating Label Text"
+            hintText="mb, will u gonna to the store?"
+            floatingLabelText="Write reminder here!"
             onChange={event => this.setState({ text: event.target.value })}
           />
           <DatePicker
-            hintText="Portrait Dialog"
+            hintText="Date picker"
             onChange={( event, date) => this.setState({ remDate: date })}
           />
           <RaisedButton
-            label="Primary"
+            label="Add Reminder"
             primary={true}
             style={style.button}
             onClick={() => this.addReminder()}
@@ -104,7 +103,7 @@ class App extends Component {
           {this.renderReminders()}
           <Divider />
           <RaisedButton 
-            label="Secondary"
+            label="Clear all reminders"
             secondary={true}
             style={style.button} 
             onClick={() => this.props.clearReminders()} 
